@@ -1,29 +1,48 @@
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import logo from './assets/logo.png'
+import Home from './pages/Home.jsx'
+import Shop from './pages/Shop.jsx'
+import Login from './pages/Login.jsx'
+import Signup from './pages/Signup.jsx'
+import Account from './pages/Account.jsx'
+import About from './pages/About.jsx'
+
 function App() {
   return (
-    <div>
-      <h1>Amna's Crochet Shop</h1>
+    <BrowserRouter>
+      <header className="site-header">
+        <div className="brand">
+          <img src={logo} alt="Little Loop Co. logo" className="logo" />
+          <div className="brand-copy">
+            <p className="eyebrow">Little Loop Co.</p>
+            <p>Handmade With Love</p>
+          </div>
+        </div>
 
-      <h2>Handmade Crochet Creations</h2>
+        <nav>
+          <ul className="site-nav">
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/shop">Shop</Link></li>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/signup">Signup</Link></li>
+            <li><Link to="/account">Account</Link></li>
+          </ul>
+        </nav>
+      </header>
 
-      <p>
-        Welcome to my crochet business.
-        I create handmade flowers,
-        plushies, keychains and custom orders.
-      </p>
-
-      <h2>Products</h2>
-
-      <ul>
-        <li>Crochet Flowers</li>
-        <li>Plushies</li>
-        <li>Keychains</li>
-      </ul>
-
-      <button>
-        Order on WhatsApp
-      </button>
-    </div>
-  );
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/account" element={<Account />} />
+        </Routes>
+      </main>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
