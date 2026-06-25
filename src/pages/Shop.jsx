@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import supabase from '../lib/supabase.js'
 
-function Shop() {
+function Shop({ onAddToCart }) {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -12,7 +12,7 @@ function Shop() {
         const { data, error } = await supabase
           .from('products')
           .select('*')
-          .order('created_at', { ascending: false })
+          .order('id', { ascending: false })
 
         if (error) throw error
 
@@ -68,7 +68,11 @@ function Shop() {
                 PKR{Number(product.price).toFixed(2)}
               </p>
 
-              <button className="primary-button">
+              <button
+                type="button"
+                className="primary-button"
+                onClick={() => onAddToCart?.(product)}
+              >
                 Add to Cart
               </button>
             </article>

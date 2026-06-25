@@ -77,10 +77,10 @@ function Home() {
             </Link>
 
             <Link
-              to="/signup"
+              to="/shop"
               className="button outline-button"
             >
-              Create Account
+              Browse Products
             </Link>
           </div>
 

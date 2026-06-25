@@ -1,16 +1,42 @@
+import { useState } from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import logo from './assets/logo.png'
 
 import Home from './pages/Home.jsx'
 import Shop from './pages/Shop.jsx'
 import About from './pages/About.jsx'
-import Login from './pages/Login.jsx'
-import Signup from './pages/Signup.jsx'
-import Account from './pages/Account.jsx'
 
 import './App.css'
 
 function App() {
+  const [cartItems, setCartItems] = useState([])
+
+  function handleAddToCart(product) {
+    setCartItems((current) => {
+      const existing = current.find((item) => item.id === product.id)
+
+      if (existing) {
+        return current.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item,
+        )
+      }
+
+      return [...current, { ...product, quantity: 1 }]
+    })
+  }
+
+  const cartCount = cartItems.reduce(
+    (sum, item) => sum + item.quantity,
+    0,
+  )
+
+  const cartTotal = cartItems.reduce(
+    (sum, item) => sum + item.quantity * Number(item.price || 0),
+    0,
+  )
+
   return (
     <BrowserRouter>
       <div className="main-layout">
@@ -41,35 +67,25 @@ function App() {
               <li>
                 <Link to="/about">About</Link>
               </li>
-
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-
-              <li>
-                <Link to="/signup">Signup</Link>
-              </li>
-
-              <li>
-                <Link to="/account">Account</Link>
-              </li>
             </ul>
           </nav>
+
+          <div className="cart-summary">
+            <span>{cartCount} item{cartCount === 1 ? '' : 's'}</span>
+            <strong>PKR {cartTotal.toFixed(2)}</strong>
+          </div>
         </header>
 
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
 
-            <Route path="/shop" element={<Shop />} />
+            <Route
+              path="/shop"
+              element={<Shop onAddToCart={handleAddToCart} />}
+            />
 
             <Route path="/about" element={<About />} />
-
-            <Route path="/login" element={<Login />} />
-
-            <Route path="/signup" element={<Signup />} />
-
-            <Route path="/account" element={<Account />} />
           </Routes>
         </main>
 
