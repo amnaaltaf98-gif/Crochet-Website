@@ -5,6 +5,7 @@ function Shop({ onAddToCart }) {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
 
   useEffect(() => {
     async function loadProducts() {
@@ -48,6 +49,12 @@ function Shop({ onAddToCart }) {
         <p>No products available yet.</p>
       )}
 
+      {successMessage && (
+        <p className="message success-message">
+          {successMessage}
+        </p>
+      )}
+
       {!loading && products.length > 0 && (
         <div className="product-grid">
           {products.map((product) => (
@@ -71,7 +78,11 @@ function Shop({ onAddToCart }) {
               <button
                 type="button"
                 className="primary-button"
-                onClick={() => onAddToCart?.(product)}
+                onClick={() => {
+                  onAddToCart?.(product)
+                  setSuccessMessage('Added to cart successfully!')
+                  setTimeout(() => setSuccessMessage(''), 3000)
+                }}
               >
                 Add to Cart
               </button>

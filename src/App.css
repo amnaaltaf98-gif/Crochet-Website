@@ -198,6 +198,12 @@
   margin: 20px;
 }
 
+.success-message {
+  margin: 20px 0 0;
+  color: var(--sage);
+  font-weight: 700;
+}
+
 .cart-summary {
   display: flex;
   flex-direction: column;
