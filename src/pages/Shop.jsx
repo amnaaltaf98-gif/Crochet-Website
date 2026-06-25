@@ -65,7 +65,7 @@ function Shop() {
               <p>{product.description}</p>
 
               <p className="price">
-                ${Number(product.price).toFixed(2)}
+                PKR{Number(product.price).toFixed(2)}
               </p>
 
               <button className="primary-button">
