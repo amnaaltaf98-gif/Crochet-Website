@@ -4,22 +4,32 @@ import supabase from '../lib/supabase.js'
 
 function Home() {
   const [featuredProducts, setFeaturedProducts] = useState([])
+  const [visibleCount, setVisibleCount] = useState(4)
+
   const [customerName, setCustomerName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [productName, setProductName] = useState('')
+  const [budget, setBudget] = useState('')
+  const [colors, setColors] = useState('')
   const [note, setNote] = useState('')
+
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
 
   useEffect(() => {
     async function loadProducts() {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from('products')
         .select('*')
-        .limit(3)
+        .order('created_at', { ascending: false })
 
-      if (data?.length) {
+      if (!error && data) {
         setFeaturedProducts(data)
-        setProductName(data[0].name)
+
+        if (data.length > 0) {
+          setProductName(data[0].name)
+        }
       }
     }
 
@@ -37,7 +47,11 @@ function Home() {
       .insert([
         {
           customer_name: customerName,
+          email,
+          phone,
           product_name: productName,
+          budget,
+          colors,
           message: note,
         },
       ])
@@ -49,53 +63,45 @@ function Home() {
       return
     }
 
-    setMessage('Order submitted successfully!')
+    setMessage('Custom order submitted successfully!')
 
     setCustomerName('')
+    setEmail('')
+    setPhone('')
+    setBudget('')
+    setColors('')
     setNote('')
   }
 
   return (
     <>
+      {/* HERO */}
+
       <section className="hero">
         <div className="hero-copy">
-          <p className="eyebrow">Little Loop Co.</p>
+          <p className="eyebrow">
+            Little Loop Co.
+          </p>
 
-          <h1>Handmade Crochet Creations</h1>
+          <h1>
+            Handmade Crochet
+            Creations
+          </h1>
 
           <p>
-            Discover crochet flowers, bouquets,
-            charms and custom handmade gifts.
+            Discover beautiful handmade
+            crochet flowers, bouquets,
+            charms and custom gifts
+            crafted with love.
           </p>
 
           <div className="hero-cta">
             <Link
               to="/shop"
-              className="button primary-button"
+              className="button primary-button hero-shop-btn"
             >
-              Shop Now
+              Shop Collection
             </Link>
-
-            <Link
-              to="/shop"
-              className="button outline-button"
-            >
-              Browse Products
-            </Link>
-          </div>
-
-          <div className="hero-badges">
-            <span className="badge">
-              Crochet Flowers
-            </span>
-
-            <span className="badge">
-              Bouquets
-            </span>
-
-            <span className="badge">
-              Custom Orders
-            </span>
           </div>
         </div>
 
@@ -108,46 +114,86 @@ function Home() {
         )}
       </section>
 
+      {/* FEATURED PRODUCTS */}
+
       <section>
         <div className="section-header">
-          <h2>Featured Products</h2>
+          <h2>
+            Featured Products
+          </h2>
 
           <p>
-            Beautiful handmade pieces from our
-            latest collection.
+            Browse our latest handmade
+            crochet creations.
           </p>
         </div>
 
-        <div className="featured-grid">
-          {featuredProducts.map((product) => (
-            <article
-              key={product.id}
-              className="product-card"
-            >
-              <img
-                src={product.image_url}
-                alt={product.name}
-              />
+        <div className="featured-scroll">
+          {featuredProducts
+            .slice(0, visibleCount)
+            .map((product) => (
+              <Link
+                key={product.id}
+                to={`/shop#product-${product.id}`}
+                className="product-link"
+              >
+                <article className="product-card">
+                  <img
+                    src={product.image_url}
+                    alt={product.name}
+                  />
 
-              <h3>{product.name}</h3>
+                  <h3>{product.name}</h3>
 
-              <p>{product.description}</p>
+                  <p>
+                    {product.description}
+                  </p>
 
-              <p className="price">
-                PKR{Number(product.price).toFixed(2)}
-              </p>
-            </article>
-          ))}
+                  <p className="price">
+                    PKR{' '}
+                    {Number(
+                      product.price
+                    ).toLocaleString()}
+                  </p>
+                </article>
+              </Link>
+            ))}
         </div>
+
+        {visibleCount <
+          featuredProducts.length && (
+          <div
+            style={{
+              textAlign: 'center',
+              marginTop: '24px',
+            }}
+          >
+            <button
+              className="primary-button"
+              onClick={() =>
+                setVisibleCount(
+                  visibleCount + 4
+                )
+              }
+            >
+              Show More
+            </button>
+          </div>
+        )}
       </section>
+
+      {/* CUSTOM ORDER */}
 
       <section className="custom-order-section">
         <div className="section-header">
-          <h2>Custom Order Request</h2>
+          <h2>
+            Custom Order Request
+          </h2>
 
           <p>
-            Tell us what you'd like and we'll
-            create it just for you.
+            Have a unique idea?
+            Let's create something
+            special just for you.
           </p>
         </div>
 
@@ -160,33 +206,82 @@ function Home() {
             placeholder="Your Name"
             value={customerName}
             onChange={(e) =>
-              setCustomerName(e.target.value)
+              setCustomerName(
+                e.target.value
+              )
             }
             required
+          />
+
+          <input
+            type="email"
+            placeholder="Email Address"
+            value={email}
+            onChange={(e) =>
+              setEmail(e.target.value)
+            }
+            required
+          />
+
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            value={phone}
+            onChange={(e) =>
+              setPhone(e.target.value)
+            }
           />
 
           <select
             value={productName}
             onChange={(e) =>
-              setProductName(e.target.value)
+              setProductName(
+                e.target.value
+              )
             }
           >
-            {featuredProducts.map((product) => (
-              <option
-                key={product.id}
-                value={product.name}
-              >
-                {product.name}
-              </option>
-            ))}
+            {featuredProducts.map(
+              (product) => (
+                <option
+                  key={product.id}
+                  value={product.name}
+                >
+                  {product.name}
+                </option>
+              )
+            )}
           </select>
+
+          <input
+            type="number"
+            placeholder="Budget (PKR)"
+            value={budget}
+            onChange={(e) =>
+              setBudget(
+                e.target.value
+              )
+            }
+          />
+
+          <input
+            type="text"
+            placeholder="Preferred Colors"
+            value={colors}
+            onChange={(e) =>
+              setColors(
+                e.target.value
+              )
+            }
+          />
 
           <textarea
             rows="5"
             placeholder="Describe your custom order..."
             value={note}
             onChange={(e) =>
-              setNote(e.target.value)
+              setNote(
+                e.target.value
+              )
             }
           />
 
@@ -197,7 +292,7 @@ function Home() {
           >
             {loading
               ? 'Submitting...'
-              : 'Submit Order'}
+              : 'Submit Request'}
           </button>
 
           {message && (

@@ -114,3 +114,8 @@ function Shop({ onAddToCart }) {
 }
 
 export default Shop
+<article
+  id={`product-${product.id}`}
+  key={product.id}
+  className="product-card"
+>

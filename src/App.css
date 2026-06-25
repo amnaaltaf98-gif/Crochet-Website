@@ -362,3 +362,54 @@ main {
 footer p {
   margin: 6px 0;
 }
+.featured-scroll {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding: 10px;
+  scroll-behavior: smooth;
+}
+
+.featured-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.featured-scroll::-webkit-scrollbar-thumb {
+  background: var(--mauve);
+  border-radius: 20px;
+}
+
+.product-link {
+  text-decoration: none;
+  min-width: 320px;
+  color: inherit;
+}
+
+.product-card {
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+.product-card:hover {
+  transform:
+    translateY(-8px)
+    scale(1.03);
+
+  box-shadow:
+    rgba(0,0,0,.18)
+    0 20px 40px -12px;
+}
+
+.product-card img {
+  transition: transform .4s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.08);
+}
+
+.hero-shop-btn {
+  padding: 18px 40px;
+  font-size: 1rem;
+}
