@@ -5,6 +5,7 @@ import logo from './assets/logo.png'
 import Home from './pages/Home.jsx'
 import Shop from './pages/Shop.jsx'
 import About from './pages/About.jsx'
+import Cart from './pages/Cart.jsx'
 
 import './App.css'
 
@@ -67,6 +68,10 @@ function App() {
               <li>
                 <Link to="/about">About</Link>
               </li>
+
+              <li>
+                <Link to="/cart">Cart</Link>
+              </li>
             </ul>
           </nav>
 
@@ -86,6 +91,11 @@ function App() {
             />
 
             <Route path="/about" element={<About />} />
+
+            <Route
+              path="/cart"
+              element={<Cart cartItems={cartItems} />}
+            />
           </Routes>
         </main>
 
