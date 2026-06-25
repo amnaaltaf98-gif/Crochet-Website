@@ -186,15 +186,21 @@ function Home() {
 
       {/* CUSTOM ORDER */}
 
-      <section className="custom-order-section">
-        <div className="custom-order-header">
-          <div className="section-header">
-            <h2>
-              Custom Order Request
-            </h2>
+      <section className="custom-order-section custom-order-widget">
+        <div className="custom-order-widget-card">
+          <div className="custom-order-info">
+            <div className="section-header">
+              <h2>
+                Custom Order Request
+              </h2>
 
-            <p>
-              Have a unique idea? Let's create something special just for you.
+              <p>
+                Have a unique idea? Let's create something special just for you.
+              </p>
+            </div>
+
+            <p className="custom-order-summary">
+              Dream it, we'll hook it. Tap the button to share your custom order idea and we'll make it happen.
             </p>
           </div>
 
@@ -203,7 +209,7 @@ function Home() {
             className="outline-button custom-order-toggle"
             onClick={() => setOrderOpen((open) => !open)}
           >
-            {orderOpen ? 'Hide Request' : 'Request Custom Order'}
+            {orderOpen ? 'Hide Order Form' : 'Request Custom Order'}
           </button>
         </div>
 
