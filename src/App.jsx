@@ -45,13 +45,13 @@ function App() {
           <Link to="/" className="brand">
             <img
               src={logo}
-              alt="Little Loop Co. Logo"
+              alt="Hanked by NA Logo"
               className="logo"
             />
 
             <div className="brand-copy">
-              <p className="eyebrow">Little Loop Co.</p>
-              <h2>Handmade With Love</h2>
+              <p className="eyebrow">Hanked by NA</p>
+              <h2>Every Stitch Has a Story</h2>
             </div>
           </Link>
 
@@ -109,11 +109,11 @@ function App() {
           }}
         >
           <p>
-            © {new Date().getFullYear()} Little Loop Co.
+            © {new Date().getFullYear()} Hanked by NA
           </p>
 
           <p>
-            Handmade crochet flowers, bouquets and custom creations.
+            Artisan bags, charms, and florals—hooked to perfection.
           </p>
         </footer>
       </div>

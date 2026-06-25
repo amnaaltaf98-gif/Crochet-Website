@@ -2,7 +2,8 @@ function About() {
   return (
     <section>
       <h1>About</h1>
-      <p>Learn more about our handmade crochet business and custom order process.</p>
+      <p>We are two university students who love to crochet, so we started this business together.
+      </p>
     </section>
   )
 }
