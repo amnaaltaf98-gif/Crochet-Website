@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import supabase from '../lib/supabase.js'
 
 function Shop({ onAddToCart }) {
@@ -6,6 +6,7 @@ function Shop({ onAddToCart }) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [successMessage, setSuccessMessage] = useState('')
+  const timeoutRef = useRef(null)
 
   useEffect(() => {
     async function loadProducts() {
@@ -26,10 +27,31 @@ function Shop({ onAddToCart }) {
     }
 
     loadProducts()
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
   }, [])
 
+  function handleAdd(product) {
+    onAddToCart?.(product)
+    setSuccessMessage('Added to cart successfully!')
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      setSuccessMessage('')
+      timeoutRef.current = null
+    }, 3000)
+  }
+
   return (
-    <section>
+    <>
+      <section>
       <div className="section-header">
         <h1>Shop</h1>
         <p>
@@ -47,12 +69,6 @@ function Shop({ onAddToCart }) {
 
       {!loading && !error && products.length === 0 && (
         <p>No products available yet.</p>
-      )}
-
-      {successMessage && (
-        <p className="message success-message">
-          {successMessage}
-        </p>
       )}
 
       {!loading && products.length > 0 && (
@@ -78,11 +94,7 @@ function Shop({ onAddToCart }) {
               <button
                 type="button"
                 className="primary-button"
-                onClick={() => {
-                  onAddToCart?.(product)
-                  setSuccessMessage('Added to cart successfully!')
-                  setTimeout(() => setSuccessMessage(''), 3000)
-                }}
+                onClick={() => handleAdd(product)}
               >
                 Add to Cart
               </button>
@@ -91,6 +103,13 @@ function Shop({ onAddToCart }) {
         </div>
       )}
     </section>
+
+      {successMessage && (
+        <div className="cart-toast">
+          {successMessage}
+        </div>
+      )}
+    </>
   )
 }
 

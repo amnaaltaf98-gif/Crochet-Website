@@ -198,10 +198,29 @@
   margin: 20px;
 }
 
-.success-message {
-  margin: 20px 0 0;
-  color: var(--sage);
-  font-weight: 700;
+.cart-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  background: rgba(50, 74, 60, 0.95);
+  color: white;
+  padding: 14px 22px;
+  border-radius: 999px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  z-index: 50;
+  animation: pop-in 0.2s ease;
+}
+
+@keyframes pop-in {
+  from {
+    transform: translate(-50%, 20px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
 }
 
 .cart-summary {
