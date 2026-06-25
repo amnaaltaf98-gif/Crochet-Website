@@ -5,6 +5,7 @@ import supabase from '../lib/supabase.js'
 function Home() {
   const [featuredProducts, setFeaturedProducts] = useState([])
   const [visibleCount, setVisibleCount] = useState(4)
+  const [orderOpen, setOrderOpen] = useState(false)
 
   const [customerName, setCustomerName] = useState('')
   const [email, setEmail] = useState('')
@@ -80,7 +81,7 @@ function Home() {
       <section className="hero">
         <div className="hero-copy">
           <p className="eyebrow">
-            Little Loop Co.
+            Hanked by NA
           </p>
 
           <h1>
@@ -89,10 +90,7 @@ function Home() {
           </h1>
 
           <p>
-            Discover beautiful handmade
-            crochet flowers, bouquets,
-            charms and custom gifts
-            crafted with love.
+            Artisan bags, charms, and florals—hooked to perfection.
           </p>
 
           <div className="hero-cta">
@@ -117,15 +115,19 @@ function Home() {
       {/* FEATURED PRODUCTS */}
 
       <section>
-        <div className="section-header">
-          <h2>
-            Featured Products
-          </h2>
+        <div className="section-header section-card">
+          <div>
+            <h2>
+              Featured Products
+            </h2>
 
-          <p>
-            Browse our latest handmade
-            crochet creations.
-          </p>
+            <p>
+              Browse our latest handmade crochet creations.
+            </p>
+          </div>
+          <span className="section-highlight">
+            Discover pieces made with care and style.
+          </span>
         </div>
 
         <div className="featured-scroll">
@@ -185,22 +187,31 @@ function Home() {
       {/* CUSTOM ORDER */}
 
       <section className="custom-order-section">
-        <div className="section-header">
-          <h2>
-            Custom Order Request
-          </h2>
+        <div className="custom-order-header">
+          <div className="section-header">
+            <h2>
+              Custom Order Request
+            </h2>
 
-          <p>
-            Have a unique idea?
-            Let's create something
-            special just for you.
-          </p>
+            <p>
+              Have a unique idea? Let's create something special just for you.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            className="outline-button custom-order-toggle"
+            onClick={() => setOrderOpen((open) => !open)}
+          >
+            {orderOpen ? 'Hide Request' : 'Request Custom Order'}
+          </button>
         </div>
 
-        <form
-          onSubmit={handleOrder}
-          className="custom-order-form"
-        >
+        <div className={`custom-order-panel ${orderOpen ? 'open' : ''}`}>
+          <form
+            onSubmit={handleOrder}
+            className="custom-order-form"
+          >
           <input
             type="text"
             placeholder="Your Name"
@@ -300,7 +311,8 @@ function Home() {
               {message}
             </p>
           )}
-        </form>
+          </form>
+        </div>
       </section>
     </>
   )

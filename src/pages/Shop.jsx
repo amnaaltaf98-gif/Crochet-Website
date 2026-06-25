@@ -63,11 +63,16 @@ function Shop({ onAddToCart }) {
   return (
     <>
       <section>
-        <div className="section-header">
-          <h1>Shop</h1>
-          <p>
-            Browse our handmade crochet creations and find the perfect gift.
-          </p>
+        <div className="section-header section-card">
+          <div>
+            <h1>Shop</h1>
+            <p>
+              Browse our handmade crochet creations and find the perfect gift.
+            </p>
+          </div>
+          <span className="section-highlight">
+            Curated crochet pieces made with care.
+          </span>
         </div>
 
         {loading && <p>Loading products...</p>}
