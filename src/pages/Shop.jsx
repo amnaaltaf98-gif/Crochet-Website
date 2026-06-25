@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import supabase from '../lib/supabase.js'
-
+<article
+  id={`product-${product.id}`}
+  key={product.id}
+  className="product-card"
+></article>
 function Shop({ onAddToCart }) {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
@@ -113,9 +117,3 @@ function Shop({ onAddToCart }) {
   )
 }
 
-export default Shop
-<article
-  id={`product-${product.id}`}
-  key={product.id}
-  className="product-card"
->
