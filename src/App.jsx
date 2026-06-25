@@ -104,8 +104,8 @@ function App() {
             marginTop: '80px',
             padding: '32px 0',
             textAlign: 'center',
-            color: '#324A3C',
-            borderTop: '1px solid rgba(50,74,60,.15)',
+            color: '#2D3A47',
+            borderTop: '1px solid rgba(45,58,71,.15)',
           }}
         >
           <p>

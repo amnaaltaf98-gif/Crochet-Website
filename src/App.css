@@ -24,19 +24,19 @@
   height: 72px;
   border-radius: 50%;
   object-fit: cover;
-  background: white;
+  background: var(--surface);
 }
 
 .brand-copy h2 {
   margin: 0;
-  color: var(--evergreen);
+  color: var(--midnight);
 }
 
 .eyebrow {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--sage);
+  color: var(--midnight);
 }
 
 .site-nav {
@@ -46,12 +46,12 @@
 }
 
 .site-nav a {
-  color: var(--evergreen);
+  color: var(--midnight);
   font-weight: 600;
 }
 
 .site-nav a:hover {
-  color: var(--mauve);
+  color: var(--rosewood);
 }
 
 /* HERO */
@@ -65,7 +65,7 @@
   padding: 60px;
   margin-top: 24px;
 
-  background: white;
+  background: var(--surface-soft);
   border-radius: 32px;
   box-shadow: var(--shadow);
 }
@@ -73,11 +73,12 @@
 .hero-copy h1 {
   font-size: 3.5rem;
   margin-bottom: 16px;
-  color: var(--evergreen);
+  color: var(--midnight);
 }
 
 .hero-copy p {
   font-size: 1.1rem;
+  color: var(--muted);
 }
 
 .hero-image {
@@ -103,23 +104,23 @@
 }
 
 .primary-button {
-  background: var(--mauve);
+  background: var(--rosewood);
   color: white;
   border: none;
 }
 
 .primary-button:hover {
-  background: var(--evergreen);
+  background: var(--midnight);
 }
 
 .outline-button {
-  border: 2px solid var(--evergreen);
-  color: var(--evergreen);
+  border: 2px solid var(--midnight);
+  color: var(--midnight);
   background: transparent;
 }
 
 .outline-button:hover {
-  background: var(--peony);
+  background: var(--blush);
 }
 
 .hero-cta {
@@ -136,8 +137,8 @@
 }
 
 .badge {
-  background: var(--peony);
-  color: var(--evergreen);
+  background: var(--blush);
+  color: var(--midnight);
   padding: 10px 18px;
   border-radius: 999px;
   font-weight: 600;
@@ -151,7 +152,7 @@
 
 .section-header h1,
 .section-header h2 {
-  color: var(--evergreen);
+  color: var(--midnight);
   margin-bottom: 8px;
 }
 
@@ -165,7 +166,7 @@
 }
 
 .product-card {
-  background: white;
+  background: var(--surface);
   border-radius: 24px;
   overflow: hidden;
   box-shadow: var(--shadow);
@@ -180,17 +181,18 @@
 .product-card h2,
 .product-card h3 {
   padding: 16px 20px 0;
-  color: var(--evergreen);
+  color: var(--midnight);
 }
 
 .product-card p {
   padding: 0 20px;
+  color: var(--muted);
 }
 
 .product-card .price {
   font-size: 1.1rem;
   font-weight: bold;
-  color: var(--evergreen);
+  color: var(--midnight);
   padding-top: 12px;
 }
 
@@ -203,7 +205,7 @@
   left: 50%;
   bottom: 24px;
   transform: translateX(-50%);
-  background: rgba(50, 74, 60, 0.95);
+  background: var(--midnight);
   color: white;
   padding: 14px 22px;
   border-radius: 999px;
@@ -228,7 +230,7 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 6px;
-  color: var(--evergreen);
+  color: var(--midnight);
   font-weight: 700;
 }
 
@@ -243,13 +245,13 @@
   grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 12px;
   padding: 16px 20px;
-  border-bottom: 1px solid rgba(50, 74, 60, 0.1);
+  border-bottom: 1px solid rgba(45, 58, 71, 0.12);
   align-items: center;
 }
 
 .cart-row-header {
   font-weight: 700;
-  background: var(--mist);
+  background: var(--sky);
 }
 
 .cart-details {
@@ -268,7 +270,7 @@
 }
 
 .cart-note {
-  color: var(--sage);
+  color: var(--muted);
   font-size: 0.95rem;
 }
 
@@ -282,7 +284,7 @@
   max-width: 750px;
   margin: auto;
 
-  background: white;
+  background: var(--surface);
   padding: 40px;
   border-radius: 28px;
   box-shadow: var(--shadow);
@@ -295,11 +297,11 @@
   padding: 16px;
   margin-bottom: 20px;
 
-  border: 2px solid var(--peony);
+  border: 2px solid var(--sky);
   border-radius: 16px;
 
-  background: var(--mist);
-  color: var(--evergreen);
+  background: var(--surface-soft);
+  color: var(--midnight);
 }
 
 .custom-order-form textarea {
@@ -310,7 +312,7 @@
 .custom-order-form select:focus,
 .custom-order-form textarea:focus {
   outline: none;
-  border-color: var(--evergreen);
+  border-color: var(--midnight);
 }
 
 .custom-order-form button {
@@ -320,7 +322,7 @@
 .message {
   margin-top: 16px;
   text-align: center;
-  color: var(--evergreen);
+  color: var(--midnight);
   font-weight: 600;
 }
 
@@ -375,7 +377,7 @@ footer p {
 }
 
 .featured-scroll::-webkit-scrollbar-thumb {
-  background: var(--mauve);
+  background: var(--rosewood);
   border-radius: 20px;
 }
 

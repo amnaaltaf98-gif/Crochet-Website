@@ -1,14 +1,19 @@
 :root {
-  --mist: #ECEBE9;
-  --peony: #E9CACD;
-  --mauve: #D19097;
-  --sage: #7E916D;
-  --evergreen: #324A3C;
+  --cream: #FFF7E6;
+  --blush: #F7C8D3;
+  --rosewood: #B46A72;
+  --sage: #A8B58A;
+  --sky: #A9B7C6;
+  --midnight: #2D3A47;
 
-  --text: #4c433e;
-  --heading: #23211d;
+  --text: #2D3A47;
+  --heading: #1F2A34;
+  --muted: #5A6571;
 
-  --shadow: rgba(0, 0, 0, 0.08) 0 10px 20px -10px;
+  --surface: #FFFFFF;
+  --surface-soft: #FBF5F0;
+
+  --shadow: rgba(45, 58, 71, 0.14) 0 12px 28px -14px;
 
   font-family: system-ui, sans-serif;
   line-height: 1.5;
@@ -26,7 +31,7 @@ body {
 }
 
 body {
-  background: var(--mist);
+  background: var(--cream);
   color: var(--text);
   font-family: system-ui, sans-serif;
 }
