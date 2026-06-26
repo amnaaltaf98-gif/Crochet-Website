@@ -38,6 +38,10 @@ function App() {
     0,
   )
 
+  const handleClearCart = () => {
+    setCartItems([])
+  }
+
   return (
     <BrowserRouter>
       <div className="main-layout">
@@ -94,7 +98,7 @@ function App() {
 
             <Route
               path="/cart"
-              element={<Cart cartItems={cartItems} />}
+              element={<Cart cartItems={cartItems} onOrderPlaced={handleClearCart} />}
             />
           </Routes>
         </main>
