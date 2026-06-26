@@ -42,17 +42,25 @@
 
 .site-nav {
   display: flex;
-  gap: 24px;
+  gap: 16px;
   list-style: none;
+  align-items: center;
 }
 
 .site-nav a {
   color: var(--midnight);
-  font-weight: 600;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  box-shadow: 0 10px 30px rgba(45, 58, 71, 0.08);
 }
 
 .site-nav a:hover {
-  color: var(--rosewood);
+  color: white;
+  background: var(--rosewood);
+  transform: translateY(-1px);
 }
 
 /* HERO */
@@ -247,11 +255,52 @@
 }
 
 .categories-grid,
-.hero-category-grid,
-.home-category-grid {
+.hero-category-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 18px;
+}
+
+.home-category-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 18px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin: 0 -12px;
+}
+
+.home-category-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.home-category-grid::-webkit-scrollbar-thumb {
+  background: rgba(45, 58, 71, 0.25);
+  border-radius: 999px;
+}
+
+.shop-category-row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 18px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin: 0 -12px;
+}
+
+.shop-category-row::-webkit-scrollbar {
+  height: 8px;
+}
+
+.shop-category-row::-webkit-scrollbar-thumb {
+  background: rgba(45, 58, 71, 0.25);
+  border-radius: 999px;
+}
+
+.shop-category-row .home-category-pill {
+  min-width: 220px;
+  width: auto;
+  flex: 0 0 220px;
 }
 
 .category-card,
@@ -268,13 +317,19 @@
   position: relative;
 }
 
-.home-category-pill {
+.home-category-pill,
+.category-card {
   width: 100%;
   cursor: pointer;
   padding: 0;
   display: grid;
   gap: 0;
   background: transparent;
+}
+
+.category-card {
+  min-width: 220px;
+  flex: 0 0 220px;
 }
 
 .home-category-pill:hover,
@@ -304,7 +359,9 @@
   font-weight: 700;
   text-align: center;
   color: white;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
   z-index: 2;
 }
 
