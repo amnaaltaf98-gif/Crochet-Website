@@ -265,14 +265,13 @@
   transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   text-decoration: none;
   color: inherit;
+  position: relative;
 }
 
 .home-category-pill {
   width: 100%;
   cursor: pointer;
-  border: none;
   padding: 0;
-  position: relative;
   display: grid;
   gap: 0;
   background: transparent;
@@ -296,7 +295,19 @@
 }
 
 .home-category-label,
-.hero-category-card span,
+.hero-category-card span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16px;
+  font-weight: 700;
+  text-align: center;
+  color: white;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%);
+  z-index: 2;
+}
+
 .category-label {
   display: block;
   padding: 16px;
@@ -424,7 +435,7 @@
   position: absolute;
   left: 0;
   top: 100%;
-  width: min(720px, calc(100vw - 48px));
+  width: min(760px, calc(100vw - 48px));
   margin-top: 16px;
   padding: 22px;
   background: var(--surface);
@@ -433,9 +444,15 @@
   box-shadow: var(--shadow);
   opacity: 0;
   pointer-events: none;
-  transform: translateY(10px);
+  transform: translateY(18px) scale(0.95);
   transition: opacity .25s ease, transform .25s ease;
   z-index: 30;
+}
+
+.hero-shop-menu:hover .hero-category-popover {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
 }
 
 .hero-shop-menu:hover .hero-category-popover {
@@ -450,6 +467,34 @@
   color: var(--midnight);
 }
 
+.hero-category-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-category-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(45, 58, 71, 0.12);
+  color: var(--midnight);
+  background: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+  font-weight: 700;
+  transition: background .2s ease, transform .2s ease, border-color .2s ease;
+}
+
+.hero-category-action:hover {
+  background: var(--sky);
+  border-color: var(--rosewood);
+  color: var(--midnight);
+  transform: translateY(-1px);
+}
+
 .hero-category-card {
   display: grid;
   gap: 10px;
@@ -458,11 +503,13 @@
 }
 
 .hero-category-card img {
-  border-bottom: 1px solid rgba(45, 58, 71, 0.08);
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
 }
 
 .hero-category-card span {
-  padding: 0 10px 16px;
+  padding: 16px;
 }
 
 .product-card img {
