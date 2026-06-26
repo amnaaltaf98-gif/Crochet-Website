@@ -1,0 +1,80 @@
+.checkout-form {
+  max-width: 480px;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--color-evergreen);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border: 1.5px solid var(--color-peony);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  background: #fff;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-mauve);
+}
+
+.order-summary {
+  background: var(--color-peony);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  margin: 1.25rem 0;
+}
+
+.order-summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.order-summary-total {
+  border-top: 1px solid var(--color-mauve);
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+.checkout-error {
+  background: #fbe7e7;
+  color: #a13a3a;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.8rem;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.secondary-button {
+  background: transparent;
+  border: 1.5px solid var(--color-evergreen);
+  color: var(--color-evergreen);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+}
