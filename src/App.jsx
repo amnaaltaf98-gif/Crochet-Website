@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import logo from './assets/logo.png'
+import supabase from './lib/supabase.js'
 
 import Home from './pages/Home.jsx'
 import Shop from './pages/Shop.jsx'
@@ -9,8 +10,53 @@ import Cart from './pages/Cart.jsx'
 
 import './App.css'
 
+function slugify(text) {
+  return String(text)
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^-\u007F]/g, '')
+    .replace(/[^a-z0-9-]/g, '')
+}
+
 function App() {
   const [cartItems, setCartItems] = useState([])
+  const [shopCategories, setShopCategories] = useState([])
+  const [shopPreviews, setShopPreviews] = useState({})
+
+  useEffect(() => {
+    async function loadShopCategories() {
+      try {
+        const { data, error } = await supabase
+          .from('products')
+          .select('id,name,category,image_url')
+          .order('id', { ascending: false })
+
+        if (error) throw error
+
+        const categories = Array.from(
+          new Set(data.map((product) => product.category || 'Uncategorized')),
+        ).sort()
+
+        const previews = categories.reduce((acc, category) => {
+          const preview = data.find(
+            (product) => (product.category || 'Uncategorized') === category,
+          )
+          if (preview) {
+            acc[category] = preview
+          }
+          return acc
+        }, {})
+
+        setShopCategories(categories)
+        setShopPreviews(previews)
+      } catch (err) {
+        console.error('Error loading shop categories:', err)
+      }
+    }
+
+    loadShopCategories()
+  }, [])
 
   function handleAddToCart(product) {
     setCartItems((current) => {
@@ -65,8 +111,28 @@ function App() {
                 <Link to="/">Home</Link>
               </li>
 
-              <li>
+              <li className="nav-shop-menu">
                 <Link to="/shop">Shop</Link>
+
+                {shopCategories.length > 0 && (
+                  <div className="nav-category-popover">
+                    <div className="hero-category-grid">
+                      {shopCategories.map((category) => (
+                        <Link
+                          key={category}
+                          to={`/shop#category-${slugify(category)}`}
+                          className="hero-category-card"
+                        >
+                          <img
+                            src={shopPreviews[category]?.image_url}
+                            alt={category}
+                          />
+                          <span>{category}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </li>
 
               <li>
