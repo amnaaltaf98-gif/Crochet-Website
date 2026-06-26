@@ -15,14 +15,17 @@ const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
+const INITIAL_FORM_STATE = {
+  name: '',
+  phone: '',
+  address: '',
+  city: 'Karachi',
+}
+
 function Cart({ cartItems, onOrderPlaced }) {
   const [step, setStep] = useState('cart') // 'cart' | 'checkout' | 'success'
-  const [form, setForm] = useState({
-    name: '',
-    phone: '',
-    address: '',
-    city: 'Karachi',
-  })
+  const [form, setForm] = useState(INITIAL_FORM_STATE)
+  const [submittedCustomer, setSubmittedCustomer] = useState(null)
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
 
@@ -66,6 +69,8 @@ function Cart({ cartItems, onOrderPlaced }) {
         publicKey: EMAILJS_PUBLIC_KEY,
       })
       onOrderPlaced?.()
+      setSubmittedCustomer({ name: form.name, phone: form.phone })
+      setForm(INITIAL_FORM_STATE)
       setStep('success')
     } catch (err) {
       console.error(err)
@@ -195,7 +200,7 @@ function Cart({ cartItems, onOrderPlaced }) {
       <div className="section-header">
         <h1>Order Placed!</h1>
         <p>
-          Thank you, {form.name}. Your order has been sent and we'll reach out on {form.phone} to confirm.
+          Thank you, {submittedCustomer?.name ?? 'customer'}. Your order has been sent and we'll reach out on {submittedCustomer?.phone ?? 'your phone'} to confirm.
         </p>
       </div>
     </section>
