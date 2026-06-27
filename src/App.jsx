@@ -7,6 +7,7 @@ import Home from './pages/Home.jsx'
 import Shop from './pages/Shop.jsx'
 import About from './pages/About.jsx'
 import Cart from './pages/Cart.jsx'
+import Reviews from './pages/Reviews.jsx'
 
 import './App.css'
 
@@ -23,6 +24,7 @@ function App() {
   const [cartItems, setCartItems] = useState([])
   const [shopCategories, setShopCategories] = useState([])
   const [shopPreviews, setShopPreviews] = useState({})
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     async function loadShopCategories() {
@@ -105,14 +107,24 @@ function App() {
             </div>
           </Link>
 
-          <nav>
+          <button 
+            className="mobile-menu-toggle"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle mobile menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <nav className={`site-nav-wrapper ${mobileMenuOpen ? 'open' : ''}`}>
             <ul className="site-nav">
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/" onClick={() => setMobileMenuOpen(false)}>Home</Link>
               </li>
 
               <li className="nav-shop-menu">
-                <Link to="/shop">Shop</Link>
+                <Link to="/shop" onClick={() => setMobileMenuOpen(false)}>Shop</Link>
 
                 {shopCategories.length > 0 && (
                   <div className="nav-category-popover">
@@ -122,6 +134,7 @@ function App() {
                           key={category}
                           to={`/shop#category-${slugify(category)}`}
                           className="hero-category-card"
+                          onClick={() => setMobileMenuOpen(false)}
                         >
                           <img
                             src={shopPreviews[category]?.image_url}
@@ -136,11 +149,15 @@ function App() {
               </li>
 
               <li>
-                <Link to="/about">About</Link>
+                <Link to="/about" onClick={() => setMobileMenuOpen(false)}>About</Link>
               </li>
 
               <li>
-                <Link to="/cart">Cart</Link>
+                <Link to="/reviews" onClick={() => setMobileMenuOpen(false)}>Reviews</Link>
+              </li>
+
+              <li>
+                <Link to="/cart" onClick={() => setMobileMenuOpen(false)}>Cart</Link>
               </li>
             </ul>
           </nav>
@@ -161,6 +178,8 @@ function App() {
             />
 
             <Route path="/about" element={<About />} />
+
+            <Route path="/reviews" element={<Reviews />} />
 
             <Route
               path="/cart"
