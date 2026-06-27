@@ -1203,7 +1203,101 @@
   .review-card {
     padding: 16px;
   }
-}\n\n/* Small Mobile (480px and below) */\n@media (max-width: 480px) {\n  .main-layout {\n    padding: 0 8px;\n  }\n\n  .site-header {\n    flex-direction: column;\n    gap: 12px;\n  }\n\n  .logo {\n    width: 48px;\n    height: 48px;\n  }\n\n  .brand-copy h2 {\n    font-size: 1rem;\n  }\n\n  .eyebrow {\n    font-size: 0.75rem;\n    letter-spacing: 1px;\n  }\n\n  .site-nav {\n    gap: 6px;\n  }\n\n  .site-nav a {\n    padding: 6px 8px;\n    font-size: 0.8rem;\n  }\n\n  .hero {\n    padding: 16px;\n    gap: 16px;\n  }\n\n  .hero-copy h1 {\n    font-size: 1.5rem;\n  }\n\n  .hero-copy p {\n    font-size: 0.9rem;\n  }\n\n  .section-header {\n    margin: 32px 0 16px;\n  }\n\n  .section-header h1,\n  .section-header h2 {\n    font-size: 1.5rem;\n  }\n\n  .page-intro-card,\n  .about-panel {\n    padding: 20px 16px;\n    margin: 16px auto 0;\n  }\n\n  .featured-grid,\n  .product-grid {\n    grid-template-columns: 1fr;\n    gap: 12px;\n  }\n\n  .product-card img {\n    height: 180px;\n  }\n\n  .cart-row {\n    padding: 10px 12px;\n    font-size: 0.85rem;\n  }\n\n  .custom-order-widget-card {\n    padding: 20px 16px;\n  }\n\n  .custom-order-form {\n    padding: 16px;\n  }\n\n  .nav-category-popover,\n  .hero-category-popover {\n    width: 90vw;\n    padding: 12px;\n  }\n}\n
+}
+
+/* Small Mobile (480px and below) */
+
+@media (max-width: 480px) {
+  .main-layout {
+    padding: 0 8px;
+  }
+
+  .site-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-copy h2 {
+    font-size: 1rem;
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+  }
+
+  .site-nav {
+    gap: 6px;
+  }
+
+  .site-nav a {
+    padding: 6px 8px;
+    font-size: 0.8rem;
+  }
+
+  .hero {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .hero-copy h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-copy p {
+    font-size: 0.9rem;
+  }
+
+  .section-header {
+    margin: 32px 0 16px;
+  }
+
+  .section-header h1,
+  .section-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .page-intro-card,
+  .about-panel {
+    padding: 20px 16px;
+    margin: 16px auto 0;
+  }
+
+  .featured-grid,
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .product-card img {
+    height: 180px;
+  }
+
+  .cart-row {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+
+  .custom-order-widget-card {
+    padding: 20px 16px;
+  }
+
+  .custom-order-form {
+    padding: 16px;
+  }
+
+  .nav-category-popover,
+  .hero-category-popover {
+    width: 90vw;
+    padding: 12px;
+  }
+}
+
 .brand {
   text-decoration: none;
   color: inherit;
